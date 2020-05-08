@@ -1,0 +1,34 @@
+1. Where the data comes from:
+    IRC poker data and kaggle poker data
+2. Format of the tables
+    i. Games
+        a. game_ID - varchar(256) PK
+        b. big_blind - float
+        c-g. cards1-5 - char(2) (e.g. As = ace spades, 5d = 5 diamond)
+        h. Pre-flop pot - float
+        i. Post-flop pot - float
+        j. Post-turn pot - float
+        k. Post-river pot - float
+    ii. Hands
+        a. player_ID - varchar(256) PK
+        b. game_ID - varchar(256) PK FK
+        c. card1 - char(2) (e.g. As = ace spades, 5d = 5 diamond)
+        d. card2 - char(2) (e.g. As = ace spades, 5d = 5 diamond)
+        e. bets - float
+        f. net_gain - float
+        g. chips_at_beginning - float
+    iii. Actions
+        a. Round_k - Tinyint (0 pre-flop, 1 post-flop, 2 post-turn, 3 post-river) PK
+        b. Position in round - Tinyint (0 for first action in round, counting up) PK
+        c. Player ID - varchar(256) PK
+        d. Game ID - varchar(256) PK FK
+        e. Action id - char(1)
+            - ‘B’	blind bet
+            - ‘f’	fold
+            - ‘k’	check
+            - ‘b’	bet
+            - ‘c’	call
+            - ‘r’	raise
+            - ‘A’	all-in
+            - ‘Q’	quits game
+            - ‘K’	kicked from game
